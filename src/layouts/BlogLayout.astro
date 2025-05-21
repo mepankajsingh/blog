@@ -1,0 +1,77 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  date?: string;
+  author?: string;
+  image?: string;
+}
+
+const { title, date, author, image } = Astro.props;
+---
+
+<Layout title={title}>
+  <main class="blog-container">
+    <article class="blog-post">
+      {image && <img src={image} alt={title} class="blog-image" />}
+      <h1 class="blog-title">{title}</h1>
+      {(date || author) && (
+        <div class="blog-meta">
+          {date && <span class="blog-date">Posted on {date}</span>}
+          {author && <span class="blog-author">by {author}</span>}
+        </div>
+      )}
+      <div class="blog-content">
+        <slot />
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .blog-container {
+    margin: auto;
+    padding: 2rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+  }
+  
+  .blog-post {
+    background-color: #23262d;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-image {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .blog-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  
+  .blog-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 2rem;
+  }
+  
+  .blog-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+</style>

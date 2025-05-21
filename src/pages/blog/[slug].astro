@@ -1,0 +1,303 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+export function getStaticPaths() {
+  const posts = [
+    {
+      slug: "getting-started-with-astro",
+      title: "Getting Started with Astro",
+      date: "June 12, 2023",
+      author: "Jane Doe",
+      image: "/images/astro-post.jpg",
+      content: `
+        <p>Astro is a new static site generator that offers an innovative approach to building websites. It allows you to use your favorite JavaScript framework (React, Vue, Svelte, etc.) but then renders the components to HTML at build time, resulting in zero JavaScript sent to the browser by default.</p>
+        
+        <h2>Why Astro?</h2>
+        <p>Astro was created with a "content-first" mindset. It's perfect for content-heavy websites like blogs, marketing sites, and portfolios. Here are some key benefits:</p>
+        
+        <ul>
+          <li><strong>Performance</strong>: By default, no JavaScript is sent to the browser, resulting in extremely fast page loads.</li>
+          <li><strong>Framework-agnostic</strong>: Use React, Vue, Svelte, or plain HTML/CSS/JS - or mix and match!</li>
+          <li><strong><li><strong>Partial Hydration</strong>: Only ship JavaScript for interactive components, keeping pages lightweight.</li>
+          <li><strong>Developer Experience</strong>: Familiar syntax and excellent tooling make development a breeze.</li>
+        </ul>
+        
+        <h2>Getting Started</h2>
+        <p>To create a new Astro project, you can use the following command:</p>
+        
+        <pre><code>npm create astro@latest</code></pre>
+        
+        <p>This will guide you through setting up a new Astro project. Once installed, you can start the development server with:</p>
+        
+        <pre><code>npm run dev</code></pre>
+        
+        <h2>Creating Pages</h2>
+        <p>In Astro, pages are created as .astro files in the src/pages directory. Each .astro file becomes a route in your site based on its file path.</p>
+        
+        <p>Here's a simple example of an Astro page:</p>
+        
+        <pre><code>---
+// src/pages/index.astro
+---
+
+<html>
+  <head>
+    <title>My Astro Site</title>
+  </head>
+  <body>
+    <h1>Welcome to my website!</h1>
+  </body>
+</html></code></pre>
+        
+        <h2>Conclusion</h2>
+        <p>Astro offers a refreshing approach to building websites, focusing on content-first development while still allowing for interactive components when needed. Its performance benefits and developer-friendly experience make it worth considering for your next project.</p>
+      `
+    },
+    {
+      slug: "future-of-web-development",
+      title: "The Future of Web Development",
+      date: "May 28, 2023",
+      author: "John Smith",
+      image: "/images/future-web.jpg",
+      content: `
+        <p>Web development continues to evolve at a rapid pace. As we look toward the future, several trends and technologies are emerging that will shape how we build websites and web applications in the coming years.</p>
+        
+        <h2>AI-Assisted Development</h2>
+        <p>Artificial intelligence is increasingly being integrated into development workflows. From code completion tools like GitHub Copilot to AI-powered design systems, developers are finding new ways to leverage machine learning to increase productivity and creativity.</p>
+        
+        <h2>WebAssembly</h2>
+        <p>WebAssembly (Wasm) allows code written in languages like C, C++, and Rust to run in the browser at near-native speed. This opens up new possibilities for web applications, including:</p>
+        
+        <ul>
+          <li>Running computationally intensive tasks in the browser</li>
+          <li>Porting existing desktop applications to the web</li>
+          <li>Creating high-performance games and multimedia experiences</li>
+        </ul>
+        
+        <h2>Edge Computing</h2>
+        <p>Edge computing moves processing closer to the end user, reducing latency and improving performance. Platforms like Cloudflare Workers and Vercel Edge Functions allow developers to run server-side code at edge locations around the world.</p>
+        
+        <h2>Headless Architecture</h2>
+        <p>The separation of frontend and backend concerns continues to gain popularity. Headless CMSs and commerce platforms provide content and data through APIs, allowing developers to build custom frontends using their preferred technologies.</p>
+        
+        <h2>Web Components</h2>
+        <p>Web Components provide a standard way to create reusable custom elements with encapsulated functionality. As browser support improves and tooling matures, we can expect to see wider adoption of this technology.</p>
+        
+        <h2>Conclusion</h2>
+        <p>The future of web development is exciting and full of possibilities. By staying informed about emerging trends and technologies, developers can position themselves to build better, faster, and more user-friendly web experiences.</p>
+      `
+    },
+    {
+      slug: "optimizing-website-performance",
+      title: "Optimizing Website Performance",
+      date: "April 15, 2023",
+      author: "Sarah Johnson",
+      image: "/images/performance.jpg",
+      content: `
+        <p>Website performance is crucial for user experience and SEO. In this post, we'll explore practical strategies to optimize your website's speed and performance.</p>
+        
+        <h2>Why Performance Matters</h2>
+        <p>Studies have shown that users abandon websites that take more than a few seconds to load. Additionally, Google uses page speed as a ranking factor for both desktop and mobile searches.</p>
+        
+        <h2>Key Performance Metrics</h2>
+        <p>Before optimizing, it's important to understand what to measure:</p>
+        
+        <ul>
+          <li><strong>First Contentful Paint (FCP)</strong>: When the first content appears on screen</li>
+          <li><strong>Largest Contentful Paint (LCP)</strong>: When the largest content element becomes visible</li>
+          <li><strong>Cumulative Layout Shift (CLS)</strong>: Measures visual stability</li>
+          <li><strong>Time to Interactive (TTI)</strong>: When the page becomes fully interactive</li>
+        </ul>
+        
+        <h2>Optimization Strategies</h2>
+        
+        <h3>1. Optimize Images</h3>
+        <p>Images often account for most of the downloaded bytes on a webpage. Optimize them by:</p>
+        <ul>
+          <li>Using modern formats like WebP</li>
+          <li>Implementing responsive images with srcset</li>
+          <li>Lazy loading images below the fold</li>
+        </ul>
+        
+        <h3>2. Minimize JavaScript</h3>
+        <p>JavaScript can significantly impact load times:</p>
+        <ul>
+          <li>Remove unused code</li>
+          <li>Split your JavaScript into smaller chunks</li>
+          <li>Defer non-critical JavaScript</li>
+        </ul>
+        
+        <h3>3. Leverage Browser Caching</h3>
+        <p>Set appropriate cache headers to store resources locally in the user's browser.</p>
+        
+        <h3>4. Use a Content Delivery Network (CDN)</h3>
+        <p>CDNs distribute your content across multiple locations worldwide, reducing latency for users.</p>
+        
+        <h2>Measuring Performance</h2>
+        <p>Use tools like Lighthouse, WebPageTest, and Google PageSpeed Insights to measure your website's performance and identify areas for improvement.</p>
+        
+        <h2>Conclusion</h2>
+        <p>Website performance optimization is an ongoing process. By implementing these strategies and regularly monitoring your site's performance, you can provide a better user experience and improve your search engine rankings.</p>
+      `
+    }
+  ];
+  
+  return posts.map(post => {
+    return {
+      params: { slug: post.slug },
+      props: { post }
+    };
+  });
+}
+
+const { post } = Astro.props;
+---
+
+<BlogLayout 
+  title={post.title}
+  date={post.date}
+  author={post.author}
+  image={post.image}
+>
+  <div class="blog-content" set:html={post.content}></div>
+  
+  <div class="post-navigation">
+    <a href="/blog" class="back-link">&larr; Back to all posts</a>
+  </div>
+  
+  <div class="comments-section">
+    <h2>Comments</h2>
+    <div class="comment-form">
+      <h3>Leave a comment</h3>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment</label>
+          <textarea id="comment" rows="5" required></textarea>
+        </div>
+        <button type="submit">Submit Comment</button>
+      </form>
+    </div>
+  </div>
+</BlogLayout>
+
+<style>
+  .blog-content {
+    line-height: 1.8;
+  }
+  
+  .blog-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: rgb(var(--accent-light));
+  }
+  
+  .blog-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .blog-content p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .blog-content ul, .blog-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  
+  .blog-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .blog-content pre {
+    background-color: #1a1c23;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  
+  .blog-content code {
+    font-size: 0.9rem;
+  }
+  
+  .post-navigation {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+  }
+  
+  .back-link {
+    display: inline-block;
+    color: rgb(var(--accent-light));
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  
+  .back-link:hover {
+    color: rgb(var(--accent));
+  }
+  
+  .comments-section {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+  }
+  
+  .comments-section h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .comment-form {
+    background-color: #23262d;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .comment-form h3 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #13151a;
+    color: white;
+  }
+  
+  .comment-form button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(var(--accent));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .comment-form button:hover {
+    background-color: rgb(var(--accent-dark));
+  }
+</style>

@@ -1,0 +1,255 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+const featuredPosts = [
+  {
+    title: "Getting Started with Astro",
+    slug: "getting-started-with-astro",
+    date: "June 12, 2023",
+    excerpt: "Learn how to build lightning-fast websites with Astro's innovative multi-page approach.",
+    image: "/images/astro-post.jpg"
+  },
+  {
+    title: "The Future of Web Development",
+    slug: "future-of-web-development",
+    date: "May 28, 2023",
+    excerpt: "Exploring the latest trends and technologies shaping the future of web development.",
+    image: "/images/future-web.jpg"
+  },
+  {
+    title: "Optimizing Website Performance",
+    slug: "optimizing-website-performance",
+    date: "April 15, 2023",
+    excerpt: "Tips and tricks to improve your website's loading speed and overall performance.",
+    image: "/images/performance.jpg"
+  }
+];
+---
+
+<Layout title="MyBlog - Home">
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to <span class="text-gradient">MyBlog</span></h1>
+        <p>Thoughts, stories and ideas about web development and beyond.</p>
+        <div class="hero-buttons">
+          <a href="/blog" class="primary-button">Read Blog</a>
+          <a href="/about" class="secondary-button">About Me</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-posts">
+      <div class="section-header">
+        <h2>Featured Posts</h2>
+        <a href="/blog" class="view-all">View all posts <span>&rarr;</span></a>
+      </div>
+      <div class="posts-grid">
+        {featuredPosts.map(post => (
+          <BlogCard 
+            title={post.title}
+            excerpt={post.excerpt}
+            slug={post.slug}
+            date={post.date}
+            image={post.image}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="newsletter-content">
+        <h2>Subscribe to the Newsletter</h2>
+        <p>Get the latest posts and updates delivered straight to your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: 100%;
+    color: white;
+  }
+
+  .hero {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: linear-gradient(rgba(19, 21, 26, 0.8), rgba(19, 21, 26, 0.9)), 
+                url('/images/hero-bg.jpg') center/cover no-repeat;
+    margin-bottom: 4rem;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #ddd;
+  }
+
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .primary-button, .secondary-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .primary-button {
+    background-color: rgb(var(--accent));
+    color: white;
+  }
+
+  .primary-button:hover {
+    background-color: rgb(var(--accent-dark));
+    transform: translateY(-2px);
+  }
+
+  .secondary-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid rgb(var(--accent));
+  }
+
+  .secondary-button:hover {
+    background-color: rgba(var(--accent), 0.1);
+    transform: translateY(-2px);
+  }
+
+  .featured-posts {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    color: white;
+  }
+
+  .view-all {
+    color: rgb(var(--accent-light));
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .view-all:hover {
+    color: rgb(var(--accent));
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .newsletter {
+    background-color: #23262d;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsletter h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter p {
+    margin-bottom: 2rem;
+    color: #ddd;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #13151a;
+    color: white;
+  }
+
+  .newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(var(--accent));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .newsletter-form button:hover {
+    background-color: rgb(var(--accent-dark));
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+  }
+</style>
